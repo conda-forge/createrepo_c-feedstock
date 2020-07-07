@@ -1,5 +1,5 @@
 {% set name = "createrepo_c" %}
-{% set version = "0.15.11" %}
+{% set version = "0.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rpm-software-management/createrepo_c/archive/{{ version }}/createrepo_c-{{ version }}.tar.gz
-  sha256: 41a6181885e38357f7ca843bf9dd27d398a02f79e3def8230e24fd643af11ce3
+  sha256: dd9f925dd166f0e132206cbe9baae6cbaa12194603cdd255e607ebd98d51297e
 
 build:
   number: 0
@@ -50,7 +50,7 @@ about:
   home: http://rpm-software-management.github.io/createrepo_c/
   license: GPL-2.0-or-later
   license_file: COPYING
-  summary: 'C implementation of createrepo'
+  summary: C implementation of createrepo
   description: |
     Createrepo_c is a C implementation of the classical [Createrepo](http://createrepo.baseurl.org/)
     tool and simultaneously a C library for manipulation with a repodata.
