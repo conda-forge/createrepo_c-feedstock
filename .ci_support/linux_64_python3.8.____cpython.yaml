@@ -40,6 +40,8 @@ python:
 - 3.8.* *_cpython
 sqlite:
 - '3'
+target_platform:
+- linux-64
 xz:
 - '5.2'
 zlib:
