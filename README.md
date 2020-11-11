@@ -5,9 +5,13 @@ Home: http://rpm-software-management.github.io/createrepo_c/
 
 Package license: GPL-2.0-or-later
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/createrepo_c-feedstock/blob/master/LICENSE.txt)
 
 Summary: C implementation of createrepo
+
+Development: https://github.com/rpm-software-management/createrepo_c
+
+Documentation: https://github.com/rpm-software-management/createrepo_c/wiki
 
 Createrepo_c is a C implementation of the classical [Createrepo](http://createrepo.baseurl.org/)
 tool and simultaneously a C library for manipulation with a repodata.
