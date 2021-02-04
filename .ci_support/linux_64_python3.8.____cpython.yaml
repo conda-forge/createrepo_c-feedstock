@@ -13,7 +13,7 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 glib:
-- '2.66'
+- '2'
 libcurl:
 - '7'
 libxml2:
@@ -46,5 +46,8 @@ target_platform:
 - linux-64
 xz:
 - '5.2'
+zip_keys:
+- - cdt_name
+  - docker_image
 zlib:
 - '1.2'
