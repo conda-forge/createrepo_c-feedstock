@@ -17,24 +17,12 @@ glib:
 libcurl:
 - '7'
 libxml2:
-- '2.9'
+- '2.10'
 openssl:
 - 1.1.1
 pin_run_as_build:
-  bzip2:
-    max_pin: x
-  libcurl:
-    max_pin: x
-  libxml2:
-    max_pin: x.x
   python:
     min_pin: x.x
-    max_pin: x.x
-  sqlite:
-    max_pin: x
-  xz:
-    max_pin: x.x
-  zlib:
     max_pin: x.x
 python:
 - 3.9.* *_cpython
@@ -43,6 +31,6 @@ sqlite:
 target_platform:
 - linux-64
 xz:
-- '5.2'
+- '5'
 zlib:
 - '1.2'
