@@ -1,5 +1,5 @@
 {% set name = "createrepo_c" %}
-{% set version = "0.20.1" %}
+{% set version = "0.21.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/rpm-software-management/createrepo_c/archive/{{ version }}/createrepo_c-{{ version }}.tar.gz
-  sha256: f9d025295f15169ef0767460faa973aebbfb2933a55ded9500c50435c650eadc
+  sha256: 41efa8382e903c4fb0c3c9e3e88e8e5e2a7bb3d4e000221dc247915846ac9c4f
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win or osx]
 
 requirements:
