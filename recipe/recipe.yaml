@@ -1,22 +1,25 @@
-{% set name = "createrepo_c" %}
-{% set version = "1.2.1" %}
+schema_version: 1
+
+context:
+  name: createrepo_c
+  version: 1.2.1
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://github.com/rpm-software-management/createrepo_c/archive/{{ version }}/createrepo_c-{{ version }}.tar.gz
+  url: https://github.com/rpm-software-management/createrepo_c/archive/${{ version }}/createrepo_c-${{ version }}.tar.gz
   sha256: 5252911bb5ab0732922e298348a94f0e348e0891935ff0876042ac1bd8c5eeed
 
 build:
-  number: 0
-  skip: true  # [win or osx]
+  number: 1
+  skip: win or osx
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
     - make
     - cmake
     - pkg-config
@@ -40,15 +43,14 @@ requirements:
   run:
     - python
     # https://abi-laboratory.pro/index.php?view=timeline&l=rpm
-    - {{ pin_compatible('rpm-tools', max_pin="x.x") }}
-    - {{ pin_compatible('libmodulemd', max_pin="x") }}
+    - ${{ pin_compatible('rpm-tools', upper_bound="x.x") }}
+    - ${{ pin_compatible('libmodulemd', upper_bound="x") }}
 
-test:
-  commands:
-    - createrepo_c --help
+tests:
+  - script:
+      - createrepo_c --help
 
 about:
-  home: http://rpm-software-management.github.io/createrepo_c/
   license: GPL-2.0-or-later
   license_file: COPYING
   summary: C implementation of createrepo
@@ -58,8 +60,9 @@ about:
     Createrepo_c provides Python bindings too, so could be easily used instead
     of [yum library](http://yum.baseurl.org/) for certain kinds of
     manipulations with repodata.
-  doc_url: https://github.com/rpm-software-management/createrepo_c/wiki
-  dev_url: https://github.com/rpm-software-management/createrepo_c
+  homepage: http://rpm-software-management.github.io/createrepo_c/
+  repository: https://github.com/rpm-software-management/createrepo_c
+  documentation: https://github.com/rpm-software-management/createrepo_c/wiki
 
 extra:
   recipe-maintainers:
