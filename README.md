@@ -78,7 +78,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-createrepo_c-green.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-createrepo__c-green.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/createrepo_c.svg)](https://anaconda.org/conda-forge/createrepo_c) |
 
 Installing createrepo_c
 =======================
@@ -195,7 +195,4 @@ Feedstock Maintainers
 =====================
 
 * [@chrisburr](https://github.com/chrisburr/)
-
-
-<!-- dummy commit to enable rerendering -->
 
