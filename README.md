@@ -19,7 +19,6 @@ Createrepo_c provides Python bindings too, so could be easily used instead
 of [yum library](http://yum.baseurl.org/) for certain kinds of
 manipulations with repodata.
 
-
 Current build status
 ====================
 
