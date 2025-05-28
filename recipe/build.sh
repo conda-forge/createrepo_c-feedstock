@@ -14,7 +14,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 
 make "-j${CPU_COUNT}"
 
+make "-j${CPU_COUNT}" install
+
 make "-j${CPU_COUNT}" tests
 make ARGS="-V" test
-
-make "-j${CPU_COUNT}" install
