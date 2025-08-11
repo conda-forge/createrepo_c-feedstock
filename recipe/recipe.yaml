@@ -31,7 +31,7 @@ requirements:
     - zchunk
     - libcurl
     - openssl
-    - xz
+    - liblzma-devel
     - libmagic
     - sqlite
     - libxml2
