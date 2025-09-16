@@ -16,7 +16,7 @@ source:
     - 0001-Fix-includes.patch
 
 build:
-  number: 1
+  number: 2
   skip: win or osx
 
 requirements:
@@ -34,7 +34,7 @@ requirements:
     - xz
     - libmagic
     - sqlite
-    - libxml2
+    - libxml2-devel
     - glib
     - bzip2
     - rpm-tools
