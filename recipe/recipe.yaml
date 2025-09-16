@@ -34,7 +34,7 @@ requirements:
     - liblzma-devel
     - libmagic
     - sqlite
-    - libxml2
+    - libxml2-devel
     - glib
     - bzip2
     - rpm-tools
