@@ -33,7 +33,7 @@ python:
 sqlite:
 - '3'
 target_platform:
-- linux-64
+- linux-aarch64
 xz:
 - '5'
 zlib:
