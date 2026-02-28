@@ -12,7 +12,6 @@ source:
   url: https://github.com/rpm-software-management/createrepo_c/archive/${{ version }}/createrepo_c-${{ version }}.tar.gz
   sha256: cab615d4731fe91b5d8ca9a56ccee561e7864b36c082d1b43af6a772ce5b444f
   patches:
-    - 438.patch
     - 0001-Fix-includes.patch
 
 build:
@@ -26,6 +25,7 @@ requirements:
     - make
     - cmake
     - pkg-config
+    - xz
   host:
     - python
     - zchunk
