@@ -5,7 +5,7 @@
 
 [workspace]
 name = "createrepo_c-feedstock"
-version = "3.55.1"  # conda-smithy version used to generate this file
+version = "3.57.0"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/createrepo_c-feedstock"
 authors = ["@conda-forge/createrepo_c"]
 channels = ["conda-forge"]
