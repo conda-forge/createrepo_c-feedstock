@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: createrepo_c
-  version: "1.2.2"
+  version: "1.2.3"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/rpm-software-management/createrepo_c/archive/${{ version }}/createrepo_c-${{ version }}.tar.gz
-  sha256: cab615d4731fe91b5d8ca9a56ccee561e7864b36c082d1b43af6a772ce5b444f
+  sha256: 9ddd1a220fa03e3bfc7d66919de8216c9b6b32bbafb56e96068c2a3de6af2e0d
   patches:
     - 0001-Fix-includes.patch
 
