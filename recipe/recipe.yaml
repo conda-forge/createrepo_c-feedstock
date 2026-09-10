@@ -57,6 +57,9 @@ requirements:
 tests:
   - script:
       - createrepo_c --help
+  - python:
+      imports:
+        - createrepo_c
 
 about:
   license: GPL-2.0-or-later
