@@ -1,11 +1,10 @@
 schema_version: 1
 
 context:
-  name: createrepo_c
   version: "1.2.4"
 
 package:
-  name: ${{ name|lower }}
+  name: createrepo_c
   version: ${{ version }}
 
 source:
@@ -31,6 +30,9 @@ requirements:
     - pkg-config
     # The Python test suite shells out to unxz
     - xz-tools
+    # BUILD_DOC_C defaults to ON, so find_package(Doxygen REQUIRED) runs even
+    # though the generated C API docs are not packaged.
+    - doxygen
   host:
     - python
     - zchunk
@@ -46,9 +48,6 @@ requirements:
     - drpm
     - zlib
     - libmodulemd
-    # Used for running tests
-    - nose
-    - doxygen
   run:
     - python
     # https://abi-laboratory.pro/index.php?view=timeline&l=rpm

@@ -6,7 +6,6 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_INSTALL_LIBDIR=lib \
-      -DPYTHON_DESIRED=3 \
       -DENABLE_DRPM=ON \
       -DWITH_LIBMODULEMD=ON \
       -DWITH_ZCHUNK=ON \
