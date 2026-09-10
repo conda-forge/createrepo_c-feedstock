@@ -1,11 +1,10 @@
 schema_version: 1
 
 context:
-  name: createrepo_c
   version: "1.2.4"
 
 package:
-  name: ${{ name|lower }}
+  name: createrepo_c
   version: ${{ version }}
 
 source:
@@ -13,9 +12,13 @@ source:
   sha256: 4c980c2b5938694d36ab3117eb286b9ffa7187c768ac66e7805662a3dd22edf1
   patches:
     - 0001-Fix-includes.patch
+    # FindPythonLibs requires libpython, which conda-forge ships separately from
+    # python as of CPython 3.15, so the configure step fails there. An extension
+    # module should not be linking libpython anyway. Not yet submitted upstream.
+    - 0002-Use-the-modern-CMake-FindPython-module-for-the-extension.patch
 
 build:
-  number: 0
+  number: 1
   skip: win or osx
 
 requirements:
@@ -25,7 +28,11 @@ requirements:
     - make
     - cmake
     - pkg-config
-    - xz
+    # The Python test suite shells out to unxz
+    - xz-tools
+    # BUILD_DOC_C defaults to ON, so find_package(Doxygen REQUIRED) runs even
+    # though the generated C API docs are not packaged.
+    - doxygen
   host:
     - python
     - zchunk
@@ -41,9 +48,6 @@ requirements:
     - drpm
     - zlib
     - libmodulemd
-    # Used for running tests
-    - nose
-    - doxygen
   run:
     - python
     # https://abi-laboratory.pro/index.php?view=timeline&l=rpm
@@ -53,6 +57,9 @@ requirements:
 tests:
   - script:
       - createrepo_c --help
+  - python:
+      imports:
+        - createrepo_c
 
 about:
   license: GPL-2.0-or-later
