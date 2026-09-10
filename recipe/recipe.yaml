@@ -29,7 +29,8 @@ requirements:
     - make
     - cmake
     - pkg-config
-    - xz
+    # The Python test suite shells out to unxz
+    - xz-tools
   host:
     - python
     - zchunk
