@@ -1,0 +1,79 @@
+From 3c904a26fc238335c5ea0eeee79f89347c8f7626 Mon Sep 17 00:00:00 2001
+From: Chris Burr <christopher.burr@cern.ch>
+Date: Thu, 10 Sep 2026 14:46:43 +0200
+Subject: [PATCH] Use the modern CMake FindPython module for the extension
+ module
+
+The deprecated FindPythonInterp/FindPythonLibs modules require
+PYTHON_LIBRARIES, i.e. libpython, which a Python extension module must
+not link against on Linux. Distributions that ship libpython separately
+from the interpreter therefore fail to configure.
+
+Switch the non-scikit-build path to find_package(Python COMPONENTS
+Interpreter Development.Module), matching what the scikit-build path
+already does, and link the extension against Python::Module so only the
+headers are used.
+---
+ src/python/CMakeLists.txt              | 19 +++----------------
+ tests/python/tests/CMakeLists.txt      |  2 ++
+ tests/python/tests/run_unittests.sh.in |  2 +-
+ 3 files changed, 6 insertions(+), 17 deletions(-)
+
+diff --git a/src/python/CMakeLists.txt b/src/python/CMakeLists.txt
+index 05ac89f..efed56c 100644
+--- a/src/python/CMakeLists.txt
++++ b/src/python/CMakeLists.txt
+@@ -1,17 +1,5 @@
+-MACRO(PYTHON_UNSET)
+-    unset(PYTHON_LIBRARY)
+-    unset(PYTHON_INCLUDE_DIR)
+-    unset(PYTHON_EXECUTABLE)
+-    unset(PYTHON_LIBRARY CACHE)
+-    unset(PYTHON_INCLUDE_DIR CACHE)
+-    unset(PYTHON_EXECUTABLE CACHE)
+-ENDMACRO(PYTHON_UNSET)
+-
+ if (NOT SKBUILD)
+-    PYTHON_UNSET()
+-    SET(Python_ADDITIONAL_VERSIONS 3.0 CACHE INTERNAL "")
+-    FIND_PACKAGE(PythonInterp 3 REQUIRED)
+-    FIND_PACKAGE(PythonLibs 3 REQUIRED)
++    find_package(Python 3 REQUIRED COMPONENTS Interpreter Development.Module)
+ endif (NOT SKBUILD)
+ 
+ set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-strict-aliasing")
+@@ -48,13 +36,12 @@ IF (SKBUILD)
+     find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
+     Python_add_library(_createrepo_c MODULE WITH_SOABI ${createrepo_cmodule_SRCS})
+ ELSE ()
+-    EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import stdout; from sysconfig import get_path; stdout.write(get_path('platlib'))" OUTPUT_VARIABLE PYTHON_INSTALL_DIR)
+-    INCLUDE_DIRECTORIES (${PYTHON_INCLUDE_PATH})
++    EXECUTE_PROCESS(COMMAND ${Python_EXECUTABLE} -c "from sys import stdout; from sysconfig import get_path; stdout.write(get_path('platlib'))" OUTPUT_VARIABLE PYTHON_INSTALL_DIR)
+     MESSAGE(STATUS "Python install dir is ${PYTHON_INSTALL_DIR}")
+ 
+     ADD_LIBRARY(_createrepo_c SHARED ${createrepo_cmodule_SRCS})
+     SET_TARGET_PROPERTIES(_createrepo_c PROPERTIES PREFIX "")
+-    TARGET_LINK_LIBRARIES(_createrepo_c PRIVATE ${PYTHON_LIBRARY})
++    TARGET_LINK_LIBRARIES(_createrepo_c PRIVATE Python::Module)
+ ENDIF ()
+ 
+ SET_TARGET_PROPERTIES(_createrepo_c PROPERTIES LIBRARY_OUTPUT_DIRECTORY "./createrepo_c")
+diff --git a/tests/python/tests/CMakeLists.txt b/tests/python/tests/CMakeLists.txt
+index 042a0af..45a3ac9 100644
+--- a/tests/python/tests/CMakeLists.txt
++++ b/tests/python/tests/CMakeLists.txt
+@@ -1,2 +1,4 @@
++find_package(Python 3 REQUIRED COMPONENTS Interpreter)
++
+ CONFIGURE_FILE("run_unittests.sh.in"  "${CMAKE_BINARY_DIR}/tests/python/tests/run_unittests.sh")
+ ADD_TEST(test_python run_unittests.sh -s ${CMAKE_CURRENT_SOURCE_DIR})
+diff --git a/tests/python/tests/run_unittests.sh.in b/tests/python/tests/run_unittests.sh.in
+index dbb8dc3..9429116 100755
+--- a/tests/python/tests/run_unittests.sh.in
++++ b/tests/python/tests/run_unittests.sh.in
+@@ -1 +1 @@
+-LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/src/: PYTHONPATH=${CMAKE_BINARY_DIR}/src/python/ WITH_LIBMODULEMD=${WITH_LIBMODULEMD} ${PYTHON_EXECUTABLE} -m unittest discover -s ${CMAKE_CURRENT_SOURCE_DIR}/../
++LD_LIBRARY_PATH=${CMAKE_BINARY_DIR}/src/: PYTHONPATH=${CMAKE_BINARY_DIR}/src/python/ WITH_LIBMODULEMD=${WITH_LIBMODULEMD} ${Python_EXECUTABLE} -m unittest discover -s ${CMAKE_CURRENT_SOURCE_DIR}/../
+-- 
+2.47.1
+

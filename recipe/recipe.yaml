@@ -13,6 +13,10 @@ source:
   sha256: 4c980c2b5938694d36ab3117eb286b9ffa7187c768ac66e7805662a3dd22edf1
   patches:
     - 0001-Fix-includes.patch
+    # FindPythonLibs requires libpython, which conda-forge ships separately from
+    # python as of CPython 3.15, so the configure step fails there. An extension
+    # module should not be linking libpython anyway. Not yet submitted upstream.
+    - 0002-Use-the-modern-CMake-FindPython-module-for-the-extension.patch
 
 build:
   number: 1
