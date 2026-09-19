@@ -5,7 +5,7 @@
 
 [workspace]
 name = "createrepo_c-feedstock"
-version = "2026.9.1"  # conda-smithy version used to generate this file
+version = "2026.9.10"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/createrepo_c-feedstock"
 authors = ["@conda-forge/createrepo_c"]
 channels = ["conda-forge"]
@@ -82,6 +82,15 @@ description = "Debug createrepo_c-feedstock with variant linux_64_channel_source
 [feature.build.tasks."inspect-linux_64_channel_sourcesconda-forgepython3.14.____cp314"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgepython3.14.____cp314.yaml"
 description = "List contents of createrepo_c-feedstock packages built for variant linux_64_channel_sourcesconda-forgepython3.14.____cp314"
+[feature.build.tasks."build-linux_64_channel_sourcesconda-forgepython3.14.____cp314t"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgepython3.14.____cp314t.yaml --target-platform linux-64"
+description = "Build createrepo_c-feedstock with variant linux_64_channel_sourcesconda-forgepython3.14.____cp314t directly (without setup scripts)"
+[feature.build.tasks."debug-linux_64_channel_sourcesconda-forgepython3.14.____cp314t"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_64_channel_sourcesconda-forgepython3.14.____cp314t.yaml --target-platform linux-64"
+description = "Debug createrepo_c-feedstock with variant linux_64_channel_sourcesconda-forgepython3.14.____cp314t directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_64_channel_sourcesconda-forgepython3.14.____cp314t"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_channel_sourcesconda-forgepython3.14.____cp314t.yaml"
+description = "List contents of createrepo_c-feedstock packages built for variant linux_64_channel_sourcesconda-forgepython3.14.____cp314t"
 
 [environments]
 build = ["build"]
