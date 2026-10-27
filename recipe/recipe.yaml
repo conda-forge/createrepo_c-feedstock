@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "1.2.5"
+  version: "1.2.6"
 
 package:
   name: createrepo_c
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/rpm-software-management/createrepo_c/archive/${{ version }}/createrepo_c-${{ version }}.tar.gz
-  sha256: 06e8db0362576c91c664886b9229a95692adc72cdb00269bf99eb15b230087ad
+  sha256: 21d068aac366052d6de56d7f92aa58322547b5e4adaebdc001d1bb0a8dd260ce
   patches:
     - 0001-Fix-includes.patch
     # FindPythonLibs requires libpython, which conda-forge ships separately from
